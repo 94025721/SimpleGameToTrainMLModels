@@ -1,23 +1,25 @@
 {
   "spawnX": 150,
   "spawnY": 250,
-  "targetZone": {"x": 960, "y": 0, "width": 20, "height": 500},
+  "targetZone": {"x": 200, "y": 100, "width": 200, "height": 50},
   "enemies": [
     {"x": 110, "y": 400, "x_min": 0, "x_max": 200, "y_min": 400, "y_max": 400, "speed": 4, "movementType": "horizontal"},
-    {"x": 200, "y": 300, "x_min": 0, "x_max": 200, "y_min": 400, "y_max": 400, "speed": 4, "movementType": "horizontal"},
-    {"x": 200, "y": 300, "x_min": 0, "x_max": 200, "y_min": 400, "y_max": 400, "speed": 4, "movementType": "horizontal"},
-    {"x": 200, "y": 200, "x_min": 200, "x_max": 200, "y_min": 100, "y_max": 300, "speed": 3, "movementType": "vertical"},
-    {"x": 100, "y": 100, "x_min": 50, "x_max": 150, "y_min": 50, "y_max": 150, "speed": 0.1, "movementType": "circular"}
+    {"x": 200, "y": 375, "x_min": 200, "x_max": 400, "y_min": 400, "y_max": 400, "speed": 4, "movementType": "horizontal"},
+    {"x": 400, "y": 350, "x_min": 200, "x_max": 400, "y_min": 400, "y_max": 400, "speed": -4, "movementType": "horizontal"},
+    {"x": 200, "y": 325, "x_min": 200, "x_max": 400, "y_min": 400, "y_max": 400, "speed": 4, "movementType": "horizontal"},
+    {"x": 400, "y": 300, "x_min": 200, "x_max": 400, "y_min": 400, "y_max": 400, "speed": -4, "movementType": "horizontal"},
+    {"x": 200, "y": 275, "x_min": 200, "x_max": 400, "y_min": 400, "y_max": 400, "speed": 4, "movementType": "horizontal"},
+    {"x": 400, "y": 250, "x_min": 200, "x_max": 400, "y_min": 400, "y_max": 400, "speed": -4, "movementType": "horizontal"},
+    {"x": 200, "y": 225, "x_min": 200, "x_max": 400, "y_min": 400, "y_max": 400, "speed": 4, "movementType": "horizontal"}
   ],
   "walls": [
     {"x": 0, "y": 200, "width": 200, "height": 10},
     {"x": 100, "y": 300, "width": 100, "height": 10},
     {"x": 100, "y": 300, "width": 10, "height": 100},
-    {"x": 200, "y": 200, "width": 10, "height": 200},
+    {"x": 200, "y": 0, "width": 10, "height": 400},
+
     {"x": 150, "y": 400, "width": 10, "height": 100},
-    {"x": 200, "y": 400, "width": 100, "height": 10},
     {"x": 400, "y": 100, "width": 10, "height": 400},
-    {"x": 300, "y": 0, "width": 10, "height": 410},
     {"x": 400, "y": 100, "width": 500, "height": 10},
     {"x": 900, "y": 100, "width": 10, "height": 300},
     {"x": 500, "y": 400, "width": 410, "height": 10},

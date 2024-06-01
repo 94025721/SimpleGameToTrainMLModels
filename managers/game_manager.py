@@ -46,3 +46,12 @@ class Game:
     def next_level(self):
         if self.current_level_index < len(self.levels) - 1:
             self.current_level_index += 1
+
+    def reset(self):
+        self.current_level_index = 0
+        self.player.respawn(self.levels[self.current_level_index].spawn_x,
+                            self.levels[self.current_level_index].spawn_y)
+        self.player.finished = False
+
+    def is_done(self):
+        return self.player.finished

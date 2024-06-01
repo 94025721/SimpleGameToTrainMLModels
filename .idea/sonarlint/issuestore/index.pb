@@ -119,3 +119,24 @@ w
 G.idea/sonarlint/issuestore/8/8/888c15d72e41c9f0f1882f4aea4c2d19f1a044eb,2/c/2c4507147db5be7ee637f82a1fee894282acf75f
 Å
 Q.idea/sonarlint/securityhotspotstore/e/a/eab36059fe8d402f38f0aad083661764593f1ee4,2/7/27be6bf0506e51b853fb827f14bc6c75a253588a
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+G
+dqn/game_environment.py,b/4/b4dfe2511865cc237927473744f7d5c2d9001896
+@
+dqn/dqn_agent.py,d/e/de6597a0b8d7e165a6e57a057e617449ee885e66
+:
+
+dqn/dqn.py,c/6/c62312bef8ff9edd184ce69026ad032b1c8e61ea
+D
+dqn/replay_memory.py,4/f/4fbe7e79ba04c78a6b7cf203d58c2b6dec9d3683
+[
++customexceptions/model_memory_load_error.py,5/0/5081a63a5aa80d1bf1ea2530f3701935d0693bf1
+S
+#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8/8/88a9255124c95bdc913197c120a8d560edc59c8e
+?
+dqn/__init__.py,8/4/84e3a74a3e37866ddf3cb7a519e357d4ee022958
+L
+customexceptions/__init__.py,5/f/5f779eb1c3e76ca8f228d827252fffcc4b79a3a0

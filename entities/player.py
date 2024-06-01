@@ -21,7 +21,6 @@ class Player(Entity):
         self.prev_y = self.y
         self.x += self.dx
         self.y += self.dy
-        print("Player position:", self.x, self.y)
 
     def undo_move(self):
         self.x = self.prev_x
@@ -41,3 +40,6 @@ class Player(Entity):
     def increment_coins_collected(self):
         self.coins_collected += 1
         print("Coins collected:", self.coins_collected)
+
+    def get_state(self):
+        return [self.x, self.y, self.dx, self.dy]

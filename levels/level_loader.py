@@ -18,7 +18,6 @@ class LevelLoader:
         try:
             with open(file_path) as f:
                 level_data = json.load(f)
-                print(f"Loaded level data: {level_data}")
                 level = Level()
                 level.spawn_x = level_data["spawnX"]
                 level.spawn_y = level_data["spawnY"]
@@ -29,10 +28,10 @@ class LevelLoader:
                     enemy = Enemy(
                         x=enemy_data["x"],
                         y=enemy_data["y"],
-                        x_min=enemy_data["x_min"],
                         x_max=enemy_data["x_max"],
-                        y_min=enemy_data["y_min"],
                         y_max=enemy_data["y_max"],
+                        x_min=enemy_data["x_min"],
+                        y_min=enemy_data["y_min"],
                         speed=enemy_data["speed"],
                         movement_strategy=movement_strategy
                     )
