@@ -140,3 +140,7 @@ S
 dqn/__init__.py,8/4/84e3a74a3e37866ddf3cb7a519e357d4ee022958
 L
 customexceptions/__init__.py,5/f/5f779eb1c3e76ca8f228d827252fffcc4b79a3a0
+L
+resources/levels/level2.json,f/2/f2ba8184241d3a78b532938f5fbb5cd85958845b
+L
+resources/levels/level1.json,2/e/2e38de5b8480fb488508c7fccd4d09cac9a86496

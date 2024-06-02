@@ -22,7 +22,7 @@ class Game:
 
     def load_levels(self):
         try:
-            levels = LevelLoader.load_all_levels('levels.json')
+            levels = LevelLoader.load_all_levels()
             self.levels.extend(levels)
             if self.levels:
                 self.player.respawn(self.levels[self.current_level_index].spawn_x,
@@ -36,8 +36,8 @@ class Game:
             self.collision_manager.handle_player_movement(self.player, current_level)
             self.collision_manager.handle_enemy_movement(self.player, current_level)
             self.collision_manager.handle_coin_collection(self.player, current_level)
-            if self.player.finished:
-                self.game_state = self.GAME_OVER
+            # if self.player.times_finished:
+            #     self.game_state = self.GAME_OVER
             self.game_observer.update()
 
     def add_level(self, level):
@@ -51,7 +51,7 @@ class Game:
         self.current_level_index = 0
         self.player.respawn(self.levels[self.current_level_index].spawn_x,
                             self.levels[self.current_level_index].spawn_y)
-        self.player.finished = False
+        self.player.times_finished = False
 
     def is_done(self):
-        return self.player.finished
+        return self.player.times_finished

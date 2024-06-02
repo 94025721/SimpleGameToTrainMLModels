@@ -1,3 +1,4 @@
+import os
 import torch
 import torch.optim as optim
 import numpy as np
@@ -6,6 +7,7 @@ import pickle
 
 from torch import nn
 
+from customexceptions.model_memory_load_error import ModelMemoryLoadError
 from dqn.dqn import DQN
 from dqn.replay_memory import ReplayMemory
 
@@ -74,7 +76,13 @@ class DQNAgent:
         print("Model and memory saved.")
 
     def load(self, model_path, memory_path):
-        self.model.load_state_dict(torch.load(model_path))
-        with open(memory_path, 'rb') as memory_file:
-            self.memory = pickle.load(memory_file)
-        print("Model and memory loaded.")
+        if os.path.exists(model_path) and os.path.exists(memory_path):
+            try:
+                self.model.load_state_dict(torch.load(model_path))
+                with open(memory_path, 'rb') as memory_file:
+                    self.memory = pickle.load(memory_file)
+                print("Model and memory loaded.")
+            except ModelMemoryLoadError as e:
+                print(f"Error loading model/memory: {e}. Starting from scratch.")
+        else:
+            print("No saved model/memory found, starting from scratch.")

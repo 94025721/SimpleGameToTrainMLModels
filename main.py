@@ -1,8 +1,6 @@
 import pygame
-import time
 import sys
 
-from customexceptions.model_memory_load_error import ModelMemoryLoadError
 from settings import Settings
 from ui.game_panel import GamePanel
 from managers.game_manager import Game
@@ -77,14 +75,9 @@ def train_dqn(game, episodes, batch_size):
     action_size = 4  # [left, right, up, down]
     agent = DQNAgent(state_size, action_size)
     env = GameEnvironment(game)
-    frame_rate = 30  # Limit frame rate
-    render_skip = 10  # Render every 10 frames to reduce CPU load
-
-    # Load model and memory if they exist
-    try:
-        agent.load("dqn_model.pth", "replay_memory.pkl")
-    except ModelMemoryLoadError:
-        print("No saved model/memory found, starting from scratch.")
+    model_path = "dqn_model.pth"
+    memory_path = "replay_memory.pkl"
+    # agent.load(model_path, memory_path)
 
     for e in range(episodes):
         state = env.reset()
@@ -103,13 +96,9 @@ def train_dqn(game, episodes, batch_size):
                 print(f"Episode: {e}/{episodes}, Score: {time_step}, Epsilon: {agent.epsilon:.2}")
                 break
             agent.replay(batch_size)
-            time.sleep(0.5 * (1.0 / frame_rate))  # Throttle the loop, 50% faster
+            env.render()
 
-            if e % render_skip == 0:
-                env.render()
-
-        # Save model and memory at the end of each episode
-        agent.save("dqn_model.pth", "replay_memory.pkl")
+        agent.save(model_path, memory_path)
 
 
 if __name__ == "__main__":

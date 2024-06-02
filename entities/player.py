@@ -6,7 +6,7 @@ class Player(Entity):
     def __init__(self, x=0, y=0):
         self.x = x
         self.y = y
-        self.finished = False
+        self.times_finished = 0
         self.dx = 0
         self.dy = 0
         self.prev_x = 0
@@ -36,6 +36,10 @@ class Player(Entity):
     def increment_player_deaths(self):
         self.player_deaths += 1
         print("Player deaths:", self.player_deaths)
+
+    def increment_times_finished(self):
+        self.times_finished += 1
+        print("Times finished:", self.times_finished)
 
     def increment_coins_collected(self):
         self.coins_collected += 1
