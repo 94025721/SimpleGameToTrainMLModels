@@ -1,5 +1,4 @@
 import math
-
 from pygame.locals import K_LEFT, K_RIGHT, K_UP, K_DOWN
 
 
@@ -16,7 +15,10 @@ class GameEnvironment:
 
     def get_state(self):
         player = self.game.player
-        return [player.x, player.y, player.dx, player.dy]
+        state = [player.x, player.y, player.dx, player.dy]
+        for enemy in self.game.levels[self.game.current_level_index].enemies:
+            state.extend([enemy.x, enemy.y, enemy.dx, enemy.dy])
+        return state
 
     def step(self, action):
         keys = {K_LEFT: False, K_RIGHT: False, K_UP: False, K_DOWN: False}
@@ -43,6 +45,9 @@ class GameEnvironment:
         next_state = self.get_state()
 
         reward, done = self.calculate_reward()
+        if done or self.previous_player_deaths - self.game.player.player_deaths > 0:
+            self.reset()  # Reset the game on death
+
         return next_state, reward, done
 
     def calculate_distance_to_target(self, player):
@@ -55,18 +60,23 @@ class GameEnvironment:
 
         reward = -0.1  # Default small penalty to encourage movement
         done = False
-        self.previous_player_deaths = player.player_deaths - self.previous_player_deaths
 
-        if player.times_finished:
-            reward = 100  # Large reward for finishing
+        if player.isFinished:
+            reward = 200  # Large reward for finishing
             done = True
-        elif player.player_deaths > self.previous_player_deaths:
+        elif player.player_deaths - self.previous_player_deaths > 0:
+            done = True
             reward = -100  # Large penalty for death
             self.previous_player_deaths = player.player_deaths
         else:
             if self.previous_distance is not None:
                 # Reward for reducing distance to the target zone
-                reward += self.previous_distance - current_distance
+                distance_reward = self.previous_distance - current_distance
+                print(distance_reward)
+                reward += distance_reward * 10  # Adjust the weight as needed
+
+                # Additional reward for avoiding obstacles
+                reward += 1 if distance_reward > 0 else -1
 
             self.previous_distance = current_distance
 

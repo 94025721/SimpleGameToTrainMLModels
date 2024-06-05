@@ -11,3 +11,5 @@ class TargetZone(Entity):
 
     def get_bounds(self):
         return pygame.Rect(self.x, self.y, self.width, self.height)
+
+

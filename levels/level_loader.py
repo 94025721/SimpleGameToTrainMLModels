@@ -11,7 +11,6 @@ from entities.coin import Coin
 from entities.wall import Wall
 from entities.target_zone import TargetZone
 
-
 class LevelLoader:
     @staticmethod
     def load_all_levels():
@@ -50,6 +49,7 @@ class LevelLoader:
                             coin = Coin(**coin_data)
                             level.add_coin(coin)
 
+                        level.save_initial_state()
                         levels.append(level)
         except Exception as e:
             print(f"Error loading levels from directory {directory_path}: {e}")

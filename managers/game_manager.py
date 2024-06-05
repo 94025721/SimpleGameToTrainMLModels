@@ -12,7 +12,7 @@ class Game:
         self.player = Player()
         self.current_level_index = 0
         self.game_state = self.RUNNING
-        self.collision_manager = CollisionManager()
+        self.collision_manager = CollisionManager(self)
         self.levels = []
         self.load_levels()
 
@@ -22,13 +22,16 @@ class Game:
 
     def load_levels(self):
         try:
-            levels = LevelLoader.load_all_levels()
-            self.levels.extend(levels)
-            if self.levels:
-                self.player.respawn(self.levels[self.current_level_index].spawn_x,
-                                    self.levels[self.current_level_index].spawn_y)
+            self.levels = LevelLoader.load_all_levels()
+            self.respawn_player()
         except Exception as e:
             print(e)
+
+    def respawn_player(self):
+        if self.levels:
+            current_level = self.levels[self.current_level_index]
+            self.player.isFinished = False
+            self.player.respawn(current_level.spawn_x, current_level.spawn_y)
 
     def update(self):
         if self.game_state == self.RUNNING:
@@ -36,8 +39,6 @@ class Game:
             self.collision_manager.handle_player_movement(self.player, current_level)
             self.collision_manager.handle_enemy_movement(self.player, current_level)
             self.collision_manager.handle_coin_collection(self.player, current_level)
-            # if self.player.times_finished:
-            #     self.game_state = self.GAME_OVER
             self.game_observer.update()
 
     def add_level(self, level):
@@ -46,12 +47,9 @@ class Game:
     def next_level(self):
         if self.current_level_index < len(self.levels) - 1:
             self.current_level_index += 1
+            self.respawn_player()
 
     def reset(self):
-        self.current_level_index = 0
-        self.player.respawn(self.levels[self.current_level_index].spawn_x,
-                            self.levels[self.current_level_index].spawn_y)
+        self.levels[self.current_level_index].reset()
+        self.respawn_player()
         self.player.times_finished = False
-
-    def is_done(self):
-        return self.player.times_finished
