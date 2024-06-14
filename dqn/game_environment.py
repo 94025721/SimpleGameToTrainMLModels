@@ -62,23 +62,15 @@ class GameEnvironment:
         done = False
 
         if player.isFinished:
-            reward = 200  # Large reward for finishing
+            reward += 200
             done = True
         elif player.player_deaths - self.previous_player_deaths > 0:
-            done = True
-            reward = -100  # Large penalty for death
+            reward -= 100
             self.previous_player_deaths = player.player_deaths
-        else:
-            if self.previous_distance is not None:
-                # Reward for reducing distance to the target zone
-                distance_reward = self.previous_distance - current_distance
-                print(distance_reward)
-                reward += distance_reward * 10  # Adjust the weight as needed
-
-                # Additional reward for avoiding obstacles
-                reward += 1 if distance_reward > 0 else -1
-
-            self.previous_distance = current_distance
+        if self.previous_distance is not None:
+            distance_reward = self.previous_distance - current_distance
+            reward += distance_reward
+        self.previous_distance = current_distance
 
         return reward, done
 

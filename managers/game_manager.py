@@ -10,6 +10,7 @@ class Game:
     def __init__(self, game_observer):
         self.game_observer = game_observer
         self.player = Player()
+        self.finish_count = 0
         self.current_level_index = 0
         self.game_state = self.RUNNING
         self.collision_manager = CollisionManager(self)
@@ -38,7 +39,6 @@ class Game:
             current_level = self.levels[self.current_level_index]
             self.collision_manager.handle_player_movement(self.player, current_level)
             self.collision_manager.handle_enemy_movement(self.player, current_level)
-            self.collision_manager.handle_coin_collection(self.player, current_level)
             self.game_observer.update()
 
     def add_level(self, level):
@@ -53,3 +53,6 @@ class Game:
         self.levels[self.current_level_index].reset()
         self.respawn_player()
         self.player.times_finished = False
+
+    def increment_finish_count(self):
+        self.finish_count += 1

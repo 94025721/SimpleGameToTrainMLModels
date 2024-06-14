@@ -3,7 +3,14 @@ from settings import Settings
 
 
 class Level:
+    """
+    Represents a game level, including coins, enemies, walls, and the target zone.
+    """
+
     def __init__(self):
+        """
+        Initialize a new level with default settings and surrounding walls.
+        """
         self.coins = []
         self.enemies = []
         self.walls = []
@@ -14,6 +21,9 @@ class Level:
         self.initial_state = None
 
     def create_surrounding_walls(self):
+        """
+        Create walls around the perimeter of the game area.
+        """
         game_width = Settings.GAME_WIDTH
         game_height = Settings.GAME_HEIGHT
 
@@ -35,6 +45,9 @@ class Level:
         self.target_zone = target_zone
 
     def save_initial_state(self):
+        """
+        Save the initial state of the level for resetting purposes.
+        """
         self.initial_state = {
             "coins": [coin.clone() for coin in self.coins],
             "enemies": [enemy.clone() for enemy in self.enemies],
@@ -45,9 +58,14 @@ class Level:
         }
 
     def reset(self):
+        """
+        Reset the level to its initial state.
+        """
         self.coins = [coin.clone() for coin in self.initial_state["coins"]]
         self.enemies = [enemy.clone() for enemy in self.initial_state["enemies"]]
         self.walls = [wall.clone() for wall in self.initial_state["walls"]]
         self.target_zone = self.initial_state["target_zone"].clone() if self.initial_state["target_zone"] else None
         self.spawn_x = self.initial_state["spawn_x"]
         self.spawn_y = self.initial_state["spawn_y"]
+
+

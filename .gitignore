@@ -1,0 +1,2 @@
+# Ignore /plotter/*.json files
+*.json

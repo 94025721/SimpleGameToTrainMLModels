@@ -1,7 +1,7 @@
 import pygame
 import sys
 
-from score_tracker import ScoreTracker
+from plotter.score_tracker import ScoreTracker
 from settings import Settings
 from ui.game_panel import GamePanel
 from managers.game_manager import Game
@@ -26,7 +26,7 @@ def main(mode):
         manual_play(game, game_panel)
     elif mode == 'train':
         tracker.initialize_score_file()
-        train_dqn(game, episodes=3000, batch_size=16)
+        train_dqn(game, episodes=1000, batch_size=16)
     elif mode == 'plot':
         tracker.plot_scores_and_epsilon()
 
@@ -77,7 +77,7 @@ def update_player_movement(game, keys):
         player.dy = 2
 
 
-def train_dqn(game, episodes, batch_size):
+def train_dqn(game, episodes, batch_size, max_steps_per_episode=500):
     state_size = 4 + 4 * len(game.levels[game.current_level_index].enemies)
     action_size = 4  # [left, right, up, down]
     agent = DQNAgent(state_size, action_size)
@@ -87,9 +87,9 @@ def train_dqn(game, episodes, batch_size):
     # agent.load(model_path, memory_path) # Uncomment this line to load the model and memory
 
     for e in range(episodes):
-        episodes_count = e
         state = env.reset()
-        for time_step in range(750):
+        total_reward = 0
+        for time_step in range(max_steps_per_episode):
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -99,14 +99,14 @@ def train_dqn(game, episodes, batch_size):
             next_state, reward, done = env.step(action)
             agent.remember(state, action, reward, next_state, done)
             state = next_state
-            if done:
-                agent.update_target_model()
-                print(f"Episode: {e}/{episodes}, Score: {time_step}, Epsilon: {agent.epsilon:.2}")
-                tracker.save_episode_data(episodes_count, time_step, agent.epsilon)
-                break
-            agent.replay(batch_size)
+            total_reward += reward
             env.render()
-        agent.save(model_path, memory_path)
+
+        tracker.save_episode_data(e, total_reward, agent.epsilon, game.finish_count)
+        print(f"Episode: {e}/{episodes}, Score: {total_reward}, Epsilon: {agent.epsilon:.2}")
+        agent.replay(batch_size)
+
+    agent.save(model_path, memory_path)
 
 
 if __name__ == "__main__":

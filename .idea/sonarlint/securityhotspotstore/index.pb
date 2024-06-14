@@ -138,10 +138,6 @@ L
 resources/levels/level2.json,f/2/f2ba8184241d3a78b532938f5fbb5cd85958845b
 L
 resources/levels/level1.json,2/e/2e38de5b8480fb488508c7fccd4d09cac9a86496
-@
-score_tracker.py,e/a/ea2a031c0982865c7364e774467af05896bfd948
-;
-scores.json,a/4/a4899da62a52ce44239a587760af795ce01b3bac
 Å
 Q.idea/sonarlint/securityhotspotstore/d/e/de6597a0b8d7e165a6e57a057e617449ee885e66,6/d/6de08a0471c519e24751990cf3fbfc991d85972f
 Å
@@ -190,3 +186,12 @@ G.idea/sonarlint/issuestore/c/6/c62312bef8ff9edd184ce69026ad032b1c8e61ea,b/d/bd
 Q.idea/sonarlint/securityhotspotstore/b/4/b4dfe2511865cc237927473744f7d5c2d9001896,a/4/a4c4b8c317cfe7daaaf458a848502083d564d104
 w
 G.idea/sonarlint/issuestore/1/e/1e9075f5bf079c01ef2c910709e91a497d262080,2/5/2511a7590eb091d560dac1615e6bcef0ceeaffb6
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
+H
+plotter/score_tracker.py,b/e/be0d44628483daf4c94d4a8e0459b3378ac33d80
+C
+plotter/__init__.py,b/c/bcf2333738e17e333e6dc9fe659644b3f6e1438e
+C
+plotter/scores.json,3/9/39a47e79369537d2e91410298f11c3fcdcd2f544
