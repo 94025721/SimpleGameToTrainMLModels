@@ -33,7 +33,7 @@ The game can be run with three different modes: `train`, `play`, or `plot`.
 To train the DQN agent, run the following command:
 
 ```bash
-python main.py train
+python3 main.py train
 ```
 
 This will train the agent and save the training data in a JSON file for later analysis. Each training session generates a unique log file to help study the performance of different agent training configurations.
@@ -43,7 +43,7 @@ This will train the agent and save the training data in a JSON file for later an
 To play the game manually, run:
 
 ```bash
-python main.py play
+python3 main.py play
 ```
 
 #### Plot Training Data
@@ -51,7 +51,7 @@ python main.py play
 To plot the training data and visualize the agent's performance over time, run:
 
 ```bash
-python main.py plot
+python3 main.py plot
 ```
 
 ## Creating Levels
