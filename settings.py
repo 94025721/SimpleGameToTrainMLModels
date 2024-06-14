@@ -1,0 +1,5 @@
+class Settings:
+    ENEMY_WIDTH = 15
+    ENEMY_HEIGHT = 15
+    GAME_WIDTH = 1000
+    GAME_HEIGHT = 500
