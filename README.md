@@ -1,121 +1,118 @@
-# Simple 2D Game with DQN Agent
+# 2D Game with DQN and Q-learning
 
-## Overview
+This project is a simple 2D game developed to learn and experiment with Deep Q-Network (DQN) and Q-learning algorithms. The player must dodge enemies, collect coins, and reach the target zone to complete levels. The game can be run in different modes to either train the DQN agent, play the game manually, or plot the training data.
 
-This project is a simple 2D game implemented using Pygame, with a Deep Q-Network (DQN) agent for training and playing the game autonomously. The game involves navigating a player through levels, collecting coins, avoiding enemies, and reaching a target zone.
+## Getting Started
 
-## Features
+### Prerequisites
 
-- **Player Movement**: Control the player using keyboard inputs or an AI agent.
-- **Enemy Movement**: Enemies move in predefined patterns.
-- **Coin Collection**: Collect coins scattered throughout the level.
-- **Target Zone**: Reach the target zone to finish the level.
-- **Level Loading**: Levels are loaded from JSON files.
-- **DQN Agent**: Train a DQN agent to play the game using reinforcement learning.
-- **Replay Memory**: Store and sample experiences for training the DQN agent.
-- **Game Modes**: Play manually, train the DQN agent, or plot training results.
+Ensure you have the following dependencies installed:
 
-## Usage
+- Python 3.6+
+- PyTorch
+- NumPy
+- Matplotlib
+- Pygame
 
-### Manual Play
+Install the required Python packages using pip:
+
+```bash
+pip install torch numpy matplotlib pygame
+```
+
+### Running the Game
+
+The game can be run with three different modes: `train`, `play`, or `plot`.
+
+- **Train**: Trains the DQN agent.
+- **Play**: Play the game manually.
+- **Plot**: Plot the training data saved during the training sessions.
+
+#### Train the Agent
+
+To train the DQN agent, run the following command:
+
+```bash
+python main.py train
+```
+
+This will train the agent and save the training data in a JSON file for later analysis. Each training session generates a unique log file to help study the performance of different agent training configurations.
+
+#### Play the Game
 
 To play the game manually, run:
 
-```sh
-python main.py --mode play
+```bash
+python main.py play
 ```
 
-### Train DQN Agent
+#### Plot Training Data
 
-To train the DQN agent, run:
+To plot the training data and visualize the agent's performance over time, run:
 
-```sh
-python main.py --mode train
+```bash
+python main.py plot
 ```
 
-### Plot Training Results
+## Creating Levels
 
-To plot the scores and epsilon values after training, run:
-
-```sh
-python main.py --mode plot
-```
-
-## Game Controls
-
-- **Left Arrow**: Move left
-- **Right Arrow**: Move right
-- **Up Arrow**: Move up
-- **Down Arrow**: Move down
-
-## Project Structure
-
-- `entities/`: Contains entity classes such as `Player`, `Enemy`, `Coin`, `Wall`, and movement strategies.
-- `levels/`: Contains `Level` and `LevelLoader` classes for managing game levels.
-- `managers/`: Contains manager classes such as `CollisionManager` and `GameManager`.
-- `dqn/`: Contains DQN-related classes such as `DQNAgent`, `DQN`, and `ReplayMemory`.
-- `settings.py`: Contains game settings and configurations.
-- `main.py`: Main script to run the game in different modes.
-- `resources/levels/`: Directory containing level JSON files.
-
-## Level JSON Format
-
-Each level is defined in a JSON file with the following structure:
+Levels are defined in JSON files and can be loaded into the game using the level loader. Here is an example of how to create a level JSON file:
 
 ```json
 {
-  "spawnX": 50,
-  "spawnY": 50,
-  "targetZone": {
-    "x": 200,
-    "y": 200,
-    "width": 40,
-    "height": 40
-  },
-  "enemies": [
-    {
-      "x": 100,
-      "y": 100,
-      "x_max": 300,
-      "y_max": 300,
-      "x_min": 50,
-      "y_min": 50,
-      "speed": 2,
-      "movementType": "horizontal"
-    }
-  ],
-  "walls": [
-    {
-      "x": 0,
-      "y": 0,
-      "width": 400,
-      "height": 20
-    }
-  ],
-  "coins": [
-    {
-      "x": 150,
-      "y": 150,
-      "width": 10,
-      "height": 10
-    }
-  ]
+    "spawnX": 50,
+    "spawnY": 50,
+    "targetZone": {
+        "x": 300,
+        "y": 300,
+        "width": 20,
+        "height": 20
+    },
+    "enemies": [
+        {
+            "x": 100,
+            "y": 100,
+            "x_min": 50,
+            "x_max": 150,
+            "y_min": 50,
+            "y_max": 150,
+            "speed": 2,
+            "movementType": "horizontal"
+        }
+    ],
+    "walls": [
+        {"x": 0, "y": 0, "width": 20, "height": 400},
+        {"x": 0, "y": 0, "width": 400, "height": 20}
+    ],
+    "coins": [
+        {"x": 200, "y": 200}
+    ]
 }
 ```
 
+### Movement Strategies for Enemies
+
+Enemies can have different movement strategies:
+
+- **Vertical**: Moves up and down.
+- **Horizontal**: Moves left and right.
+- **Diagonal**: Moves diagonally.
+- **Circular**: Moves in a circular path.
+
+Specify the movement type in the `movementType` field for each enemy in the level JSON file.
+
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+Feel free to fork this repository, create merge requests, and contribute. Improvements and suggestions are highly appreciated.
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
 
 ## Acknowledgements
 
-- [Pygame](https://www.pygame.org/)
-- [PyTorch](https://pytorch.org/)
+This game is inspired by the "World's Hardest Game".
 
-## Contact
+---
 
-For any questions or inquiries, please contact [nl.degraaff.n@proton.me].
+Happy gaming and learning!
