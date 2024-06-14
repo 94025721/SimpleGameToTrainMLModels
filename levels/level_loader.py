@@ -11,9 +11,20 @@ from entities.coin import Coin
 from entities.wall import Wall
 from entities.target_zone import TargetZone
 
+
 class LevelLoader:
+    """
+    Static class to load all levels from JSON files.
+    """
+
     @staticmethod
     def load_all_levels():
+        """
+        Load all levels from JSON files in the specified directory.
+
+        Returns:
+            list: A list of loaded levels.
+        """
         directory_path = "resources/levels/"
         levels = []
         try:
@@ -57,6 +68,18 @@ class LevelLoader:
 
     @staticmethod
     def get_movement_strategy(strategy_name):
+        """
+        Get the movement strategy based on the given name.
+
+        Args:
+            strategy_name (str): Name of the movement strategy.
+
+        Returns:
+            MovementStrategy: An instance of the corresponding movement strategy.
+
+        Raises:
+            ValueError: If the strategy name is unknown.
+        """
         if strategy_name == "vertical":
             return VerticalMovement()
         elif strategy_name == "horizontal":
@@ -67,3 +90,5 @@ class LevelLoader:
             return CircularMovement()
         else:
             raise ValueError(f"Unknown movement strategy: {strategy_name}")
+
+
