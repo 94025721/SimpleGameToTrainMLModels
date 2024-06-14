@@ -151,7 +151,7 @@ def train_dqn(game, episodes, batch_size, max_steps_per_episode=500):
         state = env.reset()
         total_reward = 0
 
-        for time_step in range(max_steps_per_episode):
+        for _ in range(max_steps_per_episode):
             if process_quit_event():
                 return
 
