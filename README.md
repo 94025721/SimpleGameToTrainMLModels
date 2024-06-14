@@ -105,10 +105,6 @@ Specify the movement type in the `movementType` field for each enemy in the leve
 
 Feel free to fork this repository, create merge requests, and contribute. Improvements and suggestions are highly appreciated.
 
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-
 ## Acknowledgements
 
 This game is inspired by the "World's Hardest Game".
